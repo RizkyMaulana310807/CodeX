@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Wallet;
+
 class WalletController extends Controller
 {
 
     public function store(Request $request)
     {
+        $request->merge([
+            'jumlah' => str_replace('.', '', $request->jumlah)
+        ]);
+
         // Validasi input
         $validated = $request->validate([
             'jenis'     => 'required|in:pemasukan,pengeluaran',
