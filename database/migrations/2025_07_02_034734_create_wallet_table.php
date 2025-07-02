@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activity', function (Blueprint $table) {
+        Schema::create('wallet', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal');
             $table->enum('jenis', ['pemasukan', 'pengeluaran']);
-            $table->string('kategori', 100);
-            $table->decimal('jumlah', 15, 2);
-            $table->text('deskripsi')->nullable();
-            $table->string('sumber', 100)->nullable();
-            $table->timestamp('waktu_input')->useCurrent();
+            $table->string('kategori');
+            $table->integer('jumlah');
+            $table->string('deskripsi')->nullable();
+            $table->string('sumber');
+            $table->timestamp('tanggal')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activity');
+        Schema::dropIfExists('wallet');
     }
 };
