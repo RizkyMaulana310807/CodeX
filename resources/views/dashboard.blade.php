@@ -36,27 +36,37 @@
             {{-- Statistics Grid --}}
             <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
                 <!-- Repeat Cards -->
+
+                {{-- \/\/\/ PEMASUKAN CARD \/\/\/ --}}
                 <div class="bg-white p-5 rounded-xl shadow flex items-center space-x-4">
                     <div
-                        class="flex-none flex items-center justify-center bg-red-100 w-12 h-12 rounded-full border border-red-500">
-                        <i class="fas fa-chart-line text-red-500 text-xl"></i>
+                        class="flex-none flex items-center justify-center bg-green-100 w-12 h-12 rounded-full border border-green-500">
+                        <i class="fas fa-chart-line text-green-500 text-xl"></i>
                     </div>
                     <div>
-                        <p class="text-gray-500 text-sm">Potential Monthly Profit</p>
-                        <p class="text-xl font-bold text-gray-800">$24,042,000</p>
+                        <p class="text-gray-500 text-sm">Total Pemasukan</p>
+                        <p class="text-sm font-bold text-gray-800">
+                            <strong>RP.{{ number_format($totalPemasukan, 0, ',', '.') }}</strong>
+                        </p>
                     </div>
                 </div>
 
+                {{-- \/\/\/ PENGELUARAN CARD \/\/\/ --}}
+
                 <div class="bg-white p-5 rounded-xl shadow flex items-center space-x-4">
                     <div
-                        class="flex-none flex items-center justify-center bg-blue-100 w-12 h-12 rounded-full border border-blue-500">
-                        <i class="fas fa-user-friends text-blue-500 text-xl"></i>
+                        class="flex-none flex items-center justify-center bg-red-100 w-12 h-12 rounded-full border border-red-500">
+                        <i class="fas fa-user-friends text-red-500 text-xl"></i>
                     </div>
                     <div>
-                        <p class="text-gray-500 text-sm">Workers Wage This Month</p>
-                        <p class="text-xl font-bold text-gray-800">$8,402,000</p>
+                        <p class="text-gray-500 text-sm">Total Pengeluaran</p>
+                        <p class="text-sm font-bold text-gray-800">
+                            <strong>RP.{{ number_format($totalPengeluaran, 0, ',', '.') }}</strong>
+                        </p>
                     </div>
                 </div>
+
+                {{-- \/\/\/ TOTAL UANG CARD \/\/\/ --}}
 
                 <div class="bg-white p-5 rounded-xl shadow flex items-center space-x-4">
                     <div
@@ -64,10 +74,15 @@
                         <i class="fas fa-clock text-yellow-500 text-xl"></i>
                     </div>
                     <div>
-                        <p class="text-gray-500 text-sm">Average Project Length</p>
-                        <p class="text-xl font-bold text-gray-800">2 weeks</p>
+                        <p class="text-gray-500 text-sm">Total Uang</p>
+                        <p class="text-sm font-bold text-gray-800">
+                            <strong>RP.{{ number_format($totalUang, 0, ',', '.') }}</strong>
+                        </p>
                     </div>
                 </div>
+
+                {{-- \/\/\/ RATA RATA PEMASUKAN CARD \/\/\/ --}}
+
 
                 <div class="bg-white p-5 rounded-xl shadow flex items-center space-x-4">
                     <div
@@ -75,15 +90,19 @@
                         <i class="fas fa-dollar-sign text-green-500 text-xl"></i>
                     </div>
                     <div>
-                        <p class="text-gray-500 text-sm">Average Income per Project</p>
-                        <p class="text-xl font-bold text-gray-800">$12,000</p>
+                        <p class="text-gray-500 text-sm">Rata Rata Pemasukan</p>
+                        <p class="text-sm font-bold text-gray-800">
+                            <strong>RP.{{ number_format($rataRataPemasukan, 0, ',', '.') }}</strong>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        {{-- Right Sidebar: Notifications --}}
+        {{-- Right Sidebar --}}
         <div class="w-full lg:w-1/3 xl:w-1/4 space-y-4">
+            {{-- \/\/\/ NOTIFICATION \/\/\/ --}}
+
             <div class="bg-white p-5 rounded-xl shadow">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-semibold text-gray-800">Notifications</h3>
@@ -93,27 +112,72 @@
                 <div class="space-y-4 text-sm">
                     <div class="flex items-start space-x-3">
                         <div
-                            class="bg-yellow-100 w-10 h-10 flex items-center justify-center rounded-full text-yellow-500 text-lg">
+                            class="bg-yellow-100 w-10 h-10 flex-none flex items-center justify-center rounded-full text-yellow-500 text-lg">
                             <i class="fas fa-tasks"></i>
                         </div>
-                        <p class="text-gray-700">You’ve added new project recently, with no deadline.</p>
+                        <p class="text-gray-700">
+                            You’ve added new project recently, with no deadline. </p>
                     </div>
                     <div class="flex items-start space-x-3">
                         <div
-                            class="bg-red-100 w-10 h-10 flex items-center justify-center rounded-full text-red-500 text-lg">
+                            class="bg-red-100 w-10 h-10 flex-none flex items-center justify-center rounded-full text-red-500 text-lg">
                             <i class="fas fa-exclamation-triangle"></i>
                         </div>
                         <p class="text-gray-700">Project owner Adam requested a refund.</p>
                     </div>
                     <div class="flex items-start space-x-3">
                         <div
-                            class="bg-blue-100 w-10 h-10 flex items-center justify-center rounded-full text-blue-500 text-lg">
+                            class="bg-blue-100 w-10 h-10 flex-none flex items-center justify-center rounded-full text-blue-500 text-lg">
                             <i class="fas fa-birthday-cake"></i>
                         </div>
                         <p class="text-gray-700">Today is Toto's anniversary! 🎂</p>
                     </div>
                 </div>
             </div>
+
+
+            {{-- \/\/\/ SUMBER UANG \/\/\/ --}}
+            <div class="bg-white p-5 rounded-xl shadow">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">SUMBER UANG</h3>
+                    <a href="#" class="text-sm text-blue-500 hover:underline">See all</a>
+                </div>
+
+                <div class="space-y-4 text-sm">
+
+                    @php
+                        $walletTypes = [
+                            'dana' => 'dana-e-wallet-logo.png',
+                            'gopay' => 'gopay-e-wallet.png',
+                            'ovo' => 'ovo-e-wallet.png',
+                            'paypal' => 'paypal-e-wallet.png',
+                            'spay' => 's-pay-e-wallet.png',
+                            'seabank' => 'sea-bank-e-wallet.png',
+                        ];
+                    @endphp
+
+                    @foreach ($walletTypes as $key => $img)
+                        <div class="flex items-start space-x-3">
+                            <div
+                                class="bg-white-100 w-10 h-10 flex-none flex items-center justify-center rounded-full text-blue-500 text-lg">
+                                <img src="/images/{{ $img }}" alt="{{ $key }}">
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="text-gray-700">
+                                    RP.{{ number_format($walletBalances[$key] ?? 0, 0, ',', '.') }}
+                                </p>
+                                <p class="text-gray-700">
+                                    In total from {{ ucfirst($key) }}.
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 

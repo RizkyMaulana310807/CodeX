@@ -16,6 +16,13 @@
                 @endforeach
             </ul>
         </div>
+    @elseif (session('error'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition
+            class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <strong class="font-bold">Error!</strong>
+            <span class="block sm:inline">{{ session('error') }}</span>
+        </div>
+
     @endif
 
     <form action="{{ route('wallet.store') }}" method="POST"
@@ -92,24 +99,57 @@
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
                     @php
                         $wallets = [
-                            ['name' => 'dana', 'label' => 'Dana', 'img' => 'dana-e-wallet-logo.png'],
-                            ['name' => 'gopay', 'label' => 'GoPay', 'img' => 'gopay-e-wallet.png'],
-                            ['name' => 'ovo', 'label' => 'Ovo', 'img' => 'ovo-e-wallet.png'],
-                            ['name' => 'paypal', 'label' => 'Paypal', 'img' => 'paypal-e-wallet.png'],
-                            ['name' => 'shopeepay', 'label' => 'ShopeePay', 'img' => 's-pay-e-wallet.png'],
-                            ['name' => 'seabank', 'label' => 'Seabank', 'img' => 'sea-bank-e-wallet.png'],
+                            [
+                                'name' => 'dana',
+                                'label' => 'Dana',
+                                'img' => 'dana-e-wallet-logo.png',
+                                'jenis' => 'danaWallet',
+                            ],
+                            [
+                                'name' => 'gopay',
+                                'label' => 'GoPay',
+                                'img' => 'gopay-e-wallet.png',
+                                'jenis' => 'gopayWallet',
+                            ],
+                            [
+                                'name' => 'ovo',
+                                'label' => 'Ovo',
+                                'img' => 'ovo-e-wallet.png',
+                                'jenis' => 'ovoWallet',
+                            ],
+                            [
+                                'name' => 'paypal',
+                                'label' => 'Paypal',
+                                'img' => 'paypal-e-wallet.png',
+                                'jenis' => 'paypalWallet',
+                            ],
+                            [
+                                'name' => 'shopeepay',
+                                'label' => 'ShopeePay',
+                                'img' => 's-pay-e-wallet.png',
+                                'jenis' => 'spayWallet',
+                            ],
+                            [
+                                'name' => 'seabank',
+                                'label' => 'Seabank',
+                                'img' => 'sea-bank-e-wallet.png',
+                                'jenis' => 'seabankWallet',
+                            ],
                         ];
                     @endphp
 
                     @foreach ($wallets as $wallet)
                         <label
-                            :class="sumber === '{{ $wallet['name'] }}' ? 'border-blue-500 border-2' : 'border border-gray-300'"
+                            :class="sumber === '{{ $wallet['name'] }}' ? 'border-blue-500 border-2' :
+                                'border border-gray-300'"
                             class="cursor-pointer p-2 rounded-lg bg-white hover:bg-blue-50 transition-all flex flex-col items-center justify-center h-[110px] sm:h-[140px]">
                             <input type="radio" name="sumber" value="{{ $wallet['name'] }}" class="hidden"
                                 x-model="sumber">
                             <img src="/images/{{ $wallet['img'] }}" alt="{{ $wallet['label'] }}"
                                 class="w-[70px] sm:w-[100px] h-[70px] sm:h-[100px] object-contain aspect-square">
-                            <span class="mt-1 text-xs sm:text-sm">{{ $wallet['label'] }}</span>
+                            <span class="mt-1 text-xs sm:text-sm">{{ $wallet['label'] }} =>
+                                RP.{{ number_format($saldoWallets[$wallet['jenis']] ?? 0, 0, ',', '.') }}
+                            </span>
                         </label>
                     @endforeach
                 </div>
