@@ -97,6 +97,11 @@
                     </div>
                 </div>
             </div>
+
+            <div class="ph">
+
+            </div>
+            
         </div>
 
         {{-- Right Sidebar --}}
@@ -151,7 +156,7 @@
                             'gopay' => 'gopay-e-wallet.png',
                             'ovo' => 'ovo-e-wallet.png',
                             'paypal' => 'paypal-e-wallet.png',
-                            'spay' => 's-pay-e-wallet.png',
+                            'shopeepay' => 's-pay-e-wallet.png',
                             'seabank' => 'sea-bank-e-wallet.png',
                         ];
                     @endphp
@@ -163,7 +168,7 @@
                                 <img src="/images/{{ $img }}" alt="{{ $key }}">
                             </div>
                             <div class="flex flex-col">
-                                <p class="text-gray-700">
+                                <p class="text-gray-700 font-bold">
                                     RP.{{ number_format($walletBalances[$key] ?? 0, 0, ',', '.') }}
                                 </p>
                                 <p class="text-gray-700">

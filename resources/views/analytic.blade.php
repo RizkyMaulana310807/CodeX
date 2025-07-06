@@ -41,7 +41,7 @@
 
         {{-- Bottom Section --}}
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {{-- Recent Activities --}}
+            {{-- Recent Activities --}}
             <div class="bg-white p-6 rounded-xl shadow">
                 <h3 class="font-semibold mb-4">Recent Activities</h3>
                 <ul class="space-y-4 text-sm">
@@ -95,14 +95,18 @@
     {{-- Chart JS --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const lineCtx = document.getElementById('lineChart').getContext('2d');
-        const donutCtx = document.getElementById('donutChart').getContext('2d');
+        let wallets = @json($wallets);
+        console.log(wallets);
 
-        const dataPoints = [100, 120, 90, 130, 110, 150];
+        const donutCtx = document.getElementById('donutChart').getContext('2d');
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        const labelsData = wallets.map(item => item.formatted_date);
+        const dataPoints = wallets.map(item => item.jumlah);
+
         const lineChart = new Chart(lineCtx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                labels: labelsData,
                 datasets: [{
                     data: dataPoints,
                     fill: false,
@@ -125,7 +129,22 @@
                 plugins: {
                     legend: {
                         display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const index = context.dataIndex;
+                                const wallet = wallets[index];
+
+                                return [
+                                    'Jumlah: ' + wallet.jumlah.toLocaleString(),
+                                    'Sumber: ' + wallet.sumber,
+                                    'Jenis: ' + wallet.jenis
+                                ];
+                            }
+                        }
                     }
+
                 },
                 scales: {
                     y: {

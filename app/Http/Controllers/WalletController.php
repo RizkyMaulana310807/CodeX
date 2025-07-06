@@ -23,7 +23,7 @@ class WalletController extends Controller
 
         $rataRataPemasukan = $wallets->where('jenis', 'pemasukan')->avg('jumlah');
 
-        $walletNames = ['dana', 'gopay', 'ovo', 'paypal', 'spay', 'seabank'];
+        $walletNames = ['dana', 'gopay', 'ovo', 'paypal', 'shopeepay', 'seabank'];
 
         $walletBalances = [];
         
