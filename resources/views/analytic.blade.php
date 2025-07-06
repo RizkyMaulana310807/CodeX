@@ -100,8 +100,19 @@
 
         const donutCtx = document.getElementById('donutChart').getContext('2d');
         const lineCtx = document.getElementById('lineChart').getContext('2d');
-        const labelsData = wallets.map(item => item.formatted_date);
-        const dataPoints = wallets.map(item => item.jumlah);
+        let labelsData = wallets.map(item => item.formatted_date);
+
+        let dataPoints = [];
+        let currentBalance = 0;
+
+        wallets.forEach(item => {
+            if (item.jenis === 'pemasukan') {
+                currentBalance += item.jumlah;
+            } else if (item.jenis === 'pengeluaran') {
+                currentBalance -= item.jumlah;
+            }
+            dataPoints.push(currentBalance);
+        });
 
         const lineChart = new Chart(lineCtx, {
             type: 'line',
