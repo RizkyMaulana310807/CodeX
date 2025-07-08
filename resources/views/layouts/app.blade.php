@@ -13,7 +13,9 @@
     <main class="w-full h-screen flex">
 
         {{-- Sidebar --}}
-        @include('components.sidebar')
+        @if (!Route::is('index'))
+            @include('components.sidebar')
+        @endif
 
         {{-- Main content --}}
         <div class="flex-1 flex flex-col bg-gray-50 overflow-auto">
