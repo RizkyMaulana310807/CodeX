@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('category_link', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('route');
-            $table->string('kategori_id');
+            $table->string('nama');
             $table->timestamps();
-            $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('category_link');
     }
 };

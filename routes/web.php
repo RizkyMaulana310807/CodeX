@@ -13,4 +13,7 @@ Route::get('/worker', [WebController::class, 'worker'])->name('workers.index');
 Route::get('/uangmasuk', [WebController::class, 'pemasukan'])->name('wallet.index');
 Route::post('/uangmasuk', [WalletController::class, 'store'])->name('wallet.store');
 Route::get('/redirect/failed', [RedirectController::class, 'failed'])->name('redirect.failed');
+Route::get('/redirect/create', [RedirectController::class, 'create'])->name('redirect.create');
+Route::post('/links', [RedirectController::class, 'store'])->name('links.store');
 Route::get('/redirect/{code}', [RedirectController::class, 'index'])->name('redirect');
+Route::post('/kategori/store', [RedirectController::class, 'kategori_store'])->name('kategori.store');
